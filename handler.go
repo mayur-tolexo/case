@@ -87,10 +87,10 @@ func (hr *HTTPHandler) Run(t *testing.T, trial ...Trial) {
 //RunTrial will run specific trial api test cases
 func (hr *HTTPHandler) RunTrial(t *testing.T, trial interface{}, apis ...API) {
 	for _, api := range apis {
-		method, path, apiDesc := api.APIDesc()
+		method, path, apiDesc := api.GetDesc()
 		for _, testcase := range api.TestCases {
 			t.Logf("Case: %s of %s (%s)", testcase.Desc, apiDesc, getTestName(trial))
-			hr.runTest(t, curTestCase, method, path)
+			hr.runTest(t, testcase, method, path)
 		}
 	}
 }
